@@ -32,47 +32,742 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+ <script type="text/javascript" language="javascript">
+/* Script Name: Caesarean Prediction Model - Multiparous Intrapartum
+*/
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+//Single main function - checks which buttons and selects a drop down option and works out the predicted likelihood of Caesarean Section Delivery
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+function calculate() {
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+        // Declare variables.
+        var DropDownBox;                        // Used to determine which drop down option is selected
+        var Age;                                        // Patient age
+        var radiobutton;                        // Used to determine if checkbox is checked
+        var button;                                // Used to select a yes or no answer
+        var selectedAge;                                // Age of the Mother
+        var AssistedConception                = 2;         // If assisted conception was used
+        var MaternalCountryofBirth        = 0;        // Maternal Country of Birth
+        var NorthEastAsia;                        // North East Asia
+        var SubSaharanAfrica;                        // Sub Saharan Africa
+        var NoneoftheAbove1;                        // None of the Above
+        var MaritalStatus                = 0;        // Marital Status of mother
+        var NeverMarried;                        // Never Married
+        var NoneoftheAbove2;                        // None of the Above
+        var DeliveryataPrivateHospital        = 2;         // Delivery at a Private Hospital
+        var AntenatalCare                = 0;        // Antenatal Care Used
+        var PublicMedPrac;                        // Public Medical Practitioner
+        var PublicMidwife;                        // Public Midwife
+        var GP;                                        // GP
+        var NoneoftheAbove3;                        // None of the Above
+        var Asthma                        = 2;        // Asthma
+        var Depression                        = 2;        // Depression
+        var PreexistingHypertension        = 2;        // Pre-existingHypertension
+        var TypeIDiabetesMellitus        = 2;        // Type I Diabetes Mellitus
+        var TypeIIDiabetesMellitus        = 2;        // Type II Diabetes Mellitus
+        var LastBirthMethod                = 0;        // Last Birth Method
+        var ForcepsDelivery;                        // Forceps Delivery
+        var VacuumDelivery;                        // Vacuum Delivery
+        var LowerCaesareanSectionDelivery;        // Lower Caesarean Section Delivery
+        var ClassicalCaesareanSectionDelivery;        // Classical Caesarean Section Delivery
+        var NoneoftheAbove4;                        // None of the Above
+        var InducedLabour                = 2;        // Induced Labour
+        var AROM                        = 2;        // Artificial Rupture of Membranes
+        var NPA                                = 2;        // Non-Pharmacological Analgesia
+        var CTG                                = 2;        // CTG
+        var FSE                                = 2;        // FSE
+        var GD                                = 2;        // GD
+        var PreEc                        = 2;        // PreEc
+        var GestHTN                        = 2;        // GestHTN
+        var AH                                = 2;        // Antepartum Haemorrhage
+        var Presentation                = 0;         // Presentation
+        var Breech;                                // Breech
+        var Brow;                                // Brow
+        var Face;                                // Face
+        var Vertex;                                 // Vertex
+        var Shoulder;                                // Shoulder
+        var NoneoftheAbove5                        // None of the Above
+        var likelihood;                                // Actual prediction of CSD
+        var varx;                                // Temp variable for calculation.
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Caesarean Section Prediction Model maintained by <a href="https://github.com/DRobson74">DRobson74</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
+// Check patient age dropdown box.
+DropDownBox = document.getElementById("Age");
+Age = DropDownBox.options[DropDownBox.selectedIndex].text;
 
+
+
+// Checks to see which radiobutton is selected in AssistedConception.
+for (i = 1; i <= 2; i++) {                                
+radioButton = document.getElementById("AssistedConception" + i);
+        if (radioButton.checked == true) {
+                // Assigns value according to which radio button was selected.
+                AssistedConception = radioButton.value;
+        }
+}
+if (AssistedConception == 2) {
+                alert("No assisted conception status selected!");
+                return;
+}
+
+
+// Checks to see which radiobutton is selected in MaternalCountryofBirth.
+for (i = 1; i <= 3; i++) {
+radioButton = document.getElementById("MaternalCountryofBirth" + i);
+        if (radioButton.checked == true) {
+                //Assigns value according to which radio button was selected.
+                MaternalCountryofBirth = radioButton.value;
+                if (MaternalCountryofBirth ==1) {
+                NorthEastAsia =1;
+                SubSaharanAfrica =0;
+                }
+                if (MaternalCountryofBirth ==2) {
+                NorthEastAsia =0;
+                SubSaharanAfrica =1;
+                }
+                if (MaternalCountryofBirth ==3) {
+                NorthEastAsia =0;
+                SubSaharanAfrica =0;
+                NoneoftheAbove1 =1;
+                }
+                
+        }
+
+}
+if (MaternalCountryofBirth == 0) {
+                alert("No Maternal Country of Birth is selected!");
+                return;
+}
+
+
+// Checks to see which radiobutton is selected in MaritalStatus.
+for (i = 1; i <= 2; i++) {
+radioButton = document.getElementById("MaritalStatus" + i);
+        if (radioButton.checked == true) {
+                //Assigns value according to which radio button was selected.
+                MaritalStatus = radioButton.value;
+                if (MaritalStatus ==1) {
+                        NeverMarried =1;
+                }
+                if (MaritalStatus ==2) {
+                        NeverMarried = 0;
+                        NoneoftheAbove2 = 1;
+                        }
+        }
+
+}
+if (MaritalStatus == 0) {
+                alert("No Marital status selected!");
+                return;
+}
+
+
+
+// Checks to see which radiobutton is selected in DeliveryataPrivateHospital.
+        for (i = 1; i <= 2; i++) {                                
+        radioButton = document.getElementById("DeliveryataPrivateHospital" + i);
+                if (radioButton.checked == true) {
+                        // Assigns value according to which radio button was selected.
+                        DeliveryataPrivateHospital = radioButton.value;
+                }
+        }
+
+if (DeliveryataPrivateHospital == 2) {
+                alert("No Delivery at a Private Hospital status selected!");
+                return;
+}
+
+
+// Checks to see which radiobutton is selected in AntenatalCare.
+for (i = 1; i <= 4; i++) {
+radioButton = document.getElementById("AntenatalCare" + i);
+        if (radioButton.checked == true) {
+                //Assigns value according to which radio button was selected.                
+                AntenatalCare = radioButton.value;
+                if (AntenatalCare ==1) {
+                        PublicMedPrac = 1;
+                        PublicMidwife =0;
+                        GP =0;
+                }
+                if (AntenatalCare ==2) {
+                        PublicMedPrac = 0;
+                        PublicMidwife =1;
+                        GP =0;
+                }
+                if (AntenatalCare ==3) {
+                        PublicMedPrac = 0;
+                        PublicMidwife =0;
+                        GP =1;
+                }
+                if (AntenatalCare ==4) {
+                        PublicMedPrac = 0;
+                        PublicMidwife =0;
+                        GP =0;
+                        NoneoftheAbove3 =1;
+                }
+        }
+}
+if (AntenatalCare == 0) {
+                alert("No Antenatal Care selected!");
+                return;
+}
+
+
+
+
+// Checks to see which radiobutton is selected in Asthma.
+        for (i = 1; i <= 2; i++) {                                
+        radioButton = document.getElementById("Asthma" + i);
+                if (radioButton.checked == true) {
+                        // Assigns value according to which radio button was selected.
+                        Asthma = radioButton.value;
+                }
+        }
+if (Asthma == 2) {
+        alert("No Asthma status selected!");
+        return;
+}
+
+
+
+
+// Checks to see which radiobutton is selected in Depression.
+        for (i = 1; i <= 2; i++) {                                
+        radioButton = document.getElementById("Depression" + i);
+                if (radioButton.checked == true) {
+                        // Assigns value according to which radio button was selected.
+                        Depression = radioButton.value;
+                }
+        }
+if (Depression == 2) {
+        alert ("No Depression status selected!");
+        return;
+}
+
+
+
+// Checks to see which radiobutton is selected in PreexistingHypertension.
+        for (i = 1; i <= 2; i++) {                                
+        radioButton = document.getElementById("PreexistingHypertension" + i);
+                if (radioButton.checked == true) {
+                        // Assigns value according to which radio button was selected.
+                        PreexistingHypertension = radioButton.value;
+                }
+        }
+if (PreexistingHypertension == 2) {
+        alert ("No Pre-existing Hypertension status selected!");
+        return;
+}
+
+
+// Checks to see which radiobutton is selected in TypeIDiabetesMellitus.
+        for (i = 1; i <= 2; i++) {                                
+        radioButton = document.getElementById("TypeIDiabetesMellitus" + i);
+                if (radioButton.checked == true) {
+                        // Assigns value according to which radio button was selected.
+                        TypeIDiabetesMellitus = radioButton.value;
+                }
+        }
+if (TypeIDiabetesMellitus == 2) {
+        alert ("No Type I Diabetes Mellitus status selected!");
+        return;
+}
+
+
+
+// Checks to see which radiobutton is selected in TypeIIDiabetesMellitus.
+        for (i = 1; i <= 2; i++) {                                
+        radioButton = document.getElementById("TypeIIDiabetesMellitus" + i);
+                if (radioButton.checked == true) {
+                        // Assigns value according to which radio button was selected.
+                        TypeIIDiabetesMellitus = radioButton.value;
+                }
+        }
+if (TypeIIDiabetesMellitus == 2) {
+        alert ("No Type II Diabetes Mellitus status selected!");
+        return;
+}
+
+
+// Checks to see which radiobutton is selected in LastBirthMethod.
+for (i = 1; i <= 5; i++) {
+radioButton = document.getElementById("LastBirthMethod" + i);
+        if (radioButton.checked == true) {
+                //Assigns value according to which radio button was selected.
+                LastBirthMethod = radioButton.value;
+                if (LastBirthMethod ==1) {
+                        ForcepsDelivery = 1;
+                        VacuumDelivery =0;
+                        ClassicalCaesareanSectionDelivery =0;
+                        LowerCaesareanSectionDelivery =0;
+                }
+                if (LastBirthMethod ==2) {
+                        ForcepsDelivery =0;
+                        VacuumDelivery =1;
+                        ClassicalCaesareanSectionDelivery =0;
+                        LowerCaesareanSectionDelivery =0;
+                }
+                if (LastBirthMethod ==3) {
+                        ForcepsDelivery =0;
+                        VacuumDelivery =0;
+                        ClassicalCaesareanSectionDelivery =0;
+                        LowerCaesareanSectionDelivery =1;
+                }
+                if (LastBirthMethod ==4) {
+                        ForcepsDelivery = 0;
+                        VacuumDelivery =0;
+                        ClassicalCaesareanSectionDelivery =1;
+                        LowerCaesareanSectionDelivery =0;
+                }
+                if (LastBirthMethod ==5) {
+                        ForcepsDelivery = 0;
+                        VacuumDelivery =0;
+                        ClassicalCaesareanSectionDelivery =0;
+                        LowerCaesareanSectionDelivery =0;
+                        NoneoftheAbove4 =1;
+                }
+        }
+}
+if (LastBirthMethod == 0) {
+                alert("No Last Birth Method selected!");
+                return;
+}
+
+
+
+// Checks to see which radiobutton is selected in InducedLabour.
+        for (i = 1; i <= 2; i++) {                                
+        radioButton = document.getElementById("InducedLabour" + i);
+                if (radioButton.checked == true) {
+                        // Assigns value according to which radio button was selected.
+                        InducedLabour = radioButton.value;
+                }
+        }
+if (InducedLabour == 2) {
+        alert ("No Induced Labour status selected!");
+        return;
+}
+
+
+// Checks to see which radiobutton is selected in AROM.
+        for (i = 1; i <= 2; i++) {                                
+        radioButton = document.getElementById("AROM" + i);
+                if (radioButton.checked == true) {
+                        // Assigns value according to which radio button was selected.
+                        AROM = radioButton.value;
+                }
+        }
+if (AROM == 2) {
+        alert ("No Artificial Rupture of Membranes status selected!");
+        return;
+}
+
+
+// Checks to see which radiobutton is selected in NPA.
+        for (i = 1; i <= 2; i++) {                                
+        radioButton = document.getElementById("NPA" + i);
+                if (radioButton.checked == true) {
+                        // Assigns value according to which radio button was selected.
+                        NPA = radioButton.value;
+                }
+        }
+if (NPA == 2) {
+        alert ("No Non-Pharmacological Analgesia status selected!");
+        return;
+}
+
+
+// Checks to see which radiobutton is selected in CTG.
+        for (i = 1; i <= 2; i++) {                                
+        radioButton = document.getElementById("CTG" + i);
+                if (radioButton.checked == true) {
+                        // Assigns value according to which radio button was selected.
+                        CTG = radioButton.value;
+                }
+        }
+if (CTG == 2) {
+        alert ("No CTG status selected!");
+        return;
+}
+
+
+// Checks to see which radiobutton is selected in FSE.
+        for (i = 1; i <= 2; i++) {                                
+        radioButton = document.getElementById("FSE" + i);
+                if (radioButton.checked == true) {
+                        // Assigns value according to which radio button was selected.
+                        FSE = radioButton.value;
+                }
+        }
+if (FSE == 2) {
+        alert ("No Foetal Scalp Electrode status selected!");
+        return;
+}
+
+
+// Checks to see which radiobutton is selected in GestHTN.
+        for (i = 1; i <= 2; i++) {                                
+        radioButton = document.getElementById("GestHTN" + i);
+                if (radioButton.checked == true) {
+                        // Assigns value according to which radio button was selected.
+                        GestHTN = radioButton.value;
+                }
+        }
+if (GestHTN == 2) {
+        alert ("No Gestational Hypertension status selected!");
+        return;
+}
+
+
+// Checks to see which radiobutton is selected in PreEc.
+        for (i = 1; i <= 2; i++) {                                
+        radioButton = document.getElementById("PreEc" + i);
+                if (radioButton.checked == true) {
+                        // Assigns value according to which radio button was selected.
+                        PreEc = radioButton.value;
+                }
+        }
+if (PreEc == 2) {
+        alert ("No Pre-eclampsia status selected!");
+        return;
+}
+
+// Checks to see which radiobutton is selected in GD.
+        for (i = 1; i <= 2; i++) {                                
+        radioButton = document.getElementById("GD" + i);
+                if (radioButton.checked == true) {
+                        // Assigns value according to which radio button was selected.
+                        GD = radioButton.value;
+                }
+        }
+if (GD == 2) {
+        alert ("No Gestational Diabetes status selected!");
+        return;
+}
+
+
+// Checks to see which radiobutton is selected in AH.
+        for (i = 1; i <= 2; i++) {                                
+        radioButton = document.getElementById("AH" + i);
+                if (radioButton.checked == true) {
+                        // Assigns value according to which radio button was selected.
+                        AH = radioButton.value;
+                }
+        }
+if (AH == 2) {
+        alert ("No Antepartum Haemorrhage status selected!");
+        return;
+}
+
+
+// Checks to see which radiobutton is selected in Presentation.
+for (i = 1; i <= 6; i++) {
+radioButton = document.getElementById("Presentation" + i);
+        if (radioButton.checked == true) {
+                //Assigns value according to which radio button was selected.
+                Presentation = radioButton.value;
+                if (Presentation ==1) {
+                        Breech = 1;
+                        Brow =0;
+                        Face =0;
+                        Vertex =0;
+                        Shoulder = 0;
+                }
+                if (Presentation ==2) {
+                        Breech = 0;
+                        Brow =1;
+                        Face =0;
+                        Vertex =0;
+                        Shoulder = 0;
+                }
+                if (Presentation ==3) {
+                        Breech = 0;
+                        Brow =0;
+                        Face =1;
+                        Vertex =0;
+                        Shoulder = 0;
+                }
+                if (Presentation ==4) {
+                        Breech = 0;
+                        Brow =0;
+                        Face =0;
+                        Vertex =1;
+                        Shoulder = 0;
+                }
+                if (Presentation ==5) {
+                        Breech = 0;
+                        Brow =0;
+                        Face =0;
+                        Vertex =0;
+                        Shoulder = 1;
+                }
+                if (Presentation ==6) {
+                        Breech = 0;
+                        Brow =0;
+                        Face =0;
+                        Vertex =0;
+                        Shoulder = 0;
+                        NoneoftheAbove5 = 1
+                }
+        }
+}
+if (Presentation == 0) {
+                alert("No Presentation selected!");
+                return;
+}
+
+
+//Calculate LIKELIHOOD.
+
+varx = -0.598 + (0.037*Age) + (0.444*AssistedConception) + (0.372*Asthma) + (0.310*Depression) + (0.448*PreexistingHypertension) + (1.733*TypeIDiabetesMellitus) + (1.401*TypeIIDiabetesMellitus) + (1.119*ForcepsDelivery) + (0.729*VacuumDelivery) + (4.111*LowerCaesareanSectionDelivery) + (5.253*ClassicalCaesareanSectionDelivery) + (0.139*NeverMarried) + (0.145*DeliveryataPrivateHospital) + (-0.156*PublicMedPrac) + (-0.554*PublicMidwife) + (-0.492*GP) + (-0.246*NorthEastAsia) + (0.303*SubSaharanAfrica) +(InducedLabour*-0.254) + (AROM*-1.120) + (CTG*-0.992) + (FSE*-0.606) + (GD*0.322) + (GestHTN*0.554) + (PreEc*1.566) + (AH*0.615) + (Breech*2.404) + (Brow*2.302) + (Face*0.939) + (Vertex*-0.945) + (Shoulder*3.426) + (1.856*NPA);
+
+vary = 1 + Math.exp(varx)
+
+varz = Math.exp(varx)/vary
+
+likelihood = 100*varz;
+
+likelihood = likelihood.toFixed(2);
+
+        
+alert("Your likelihood of caesarean section delivery is " + likelihood + "%.");
+
+        
+
+        
+                
+        
+} // End of predict()
+        
+</script>
+
+
+
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Caesarean Section Prediction Model</h1>
+        <p>Intrapartum - Multiparous Women</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/DRobson74/antepartummultiparous.github.io" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/DRobson74/antepartummultiparous.github.io/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/DRobson74/antepartummultiparous.github.io/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h3>
+<p> Please fill in the follow details regarding your patient, then click calculate</p>
+
+<form>
+<p> Age:
+<select id="Age">
+    <option>16</option>
+    <option>17</option>
+    <option>18</option>
+    <option>19</option>
+    <option>20</option>
+    <option>21</option>
+    <option>22</option>
+    <option>23</option>
+    <option>24</option>
+    <option>25</option>
+    <option>26</option>
+    <option>27</option>
+    <option>28</option>
+    <option>29</option>
+    <option>30</option>
+    <option>31</option>
+    <option>32</option>
+    <option>33</option>
+    <option>34</option>
+    <option>35</option>
+    <option>36</option>
+    <option>37</option>
+    <option>38</option>
+    <option>39</option>
+    <option>40</option>
+    <option>41</option>
+    <option>42</option>
+    <option>43</option>
+    <option>44</option>
+    <option>45</option>
+</select>
+</p>
+
+
+<p> Assisted Conception:<br />
+<input type="radio" id="AssistedConception1" name = "AssistedConception" value="1">Yes<br>
+<input type ="radio" id="AssistedConception2" name = "AssistedConception" value="0">No<br>
+</p>
+
+
+
+<p> Maternal Country of Birth:<br />
+<input type ="radio" id="MaternalCountryofBirth1" name = "MaternalCountryofBirth" value="1">North East Asia<br>
+<input type ="radio" id="MaternalCountryofBirth2" name = "MaternalCountryofBirth" value="2">Sub Saharan Africa <br>
+<input type ="radio" id="MaternalCountryofBirth3" name = "MaternalCountryofBirth" value="3">None of the Above<br>
+</p>
+
+
+<p> Marital Status:<br />
+<input type ="radio" id="MaritalStatus1" name = "MaritalStatus" value="1">Never Married<br>
+<input type ="radio" id="MaritalStatus2" name = "MaritalStatus" value="2">None of the Above<br>
+</p>
+
+
+
+<p> Delivery at a Private Hospital:<br />
+<input type="radio" id="DeliveryataPrivateHospital1" name = "DeliveryataPrivateHospital" value="1">Yes<br>
+<input type="radio" id="DeliveryataPrivateHospital2" name = "DeliveryataPrivateHospital" value="0">No<br>
+</p>
+
+
+<p> Antenatal Care:<br />
+<input type ="radio" id="AntenatalCare1" name = "AntenatalCare" value="1">Public Medical Practitioner<br>
+<input type ="radio" id="AntenatalCare2" name = "AntenatalCare" value="2">Public Midwife<br>
+<input type ="radio" id="AntenatalCare3" name = "AntenatalCare" value="3">GP<br>
+<input type ="radio" id="AntenatalCare4" name ="AntenatalCare" value="4">None of the Above<br>
+</p>
+
+ 
+<p> Asthma:<br />
+<input type="radio" id="Asthma1" name = "Asthma" value="1">Yes<br>
+<input type="radio" id="Asthma2" name = "Asthma" value="0">No<br>
+</p>
+
+
+<p> Depression:<br />
+<input type="radio" id="Depression1" name = "Depression" value="1">Yes<br>
+<input type="radio" id="Depression2" name = "Depression" value="0">No<br>
+</p>
+
+
+<p> Pre-existing Hypertension:<br />
+<input type="radio" id="PreexistingHypertension1" name = "PreexistingHypertension" value="1">Yes<br>
+<input type="radio" id="PreexistingHypertension2" name = "PreexistingHypertension" value="0">No<br>
+</p>
+
+
+<p> Type I Diabetes Mellitus:<br />
+<input type="radio" id="TypeIDiabetesMellitus1" name = "TypeIDiabetesMellitus" value="1">Yes<br>
+<input type="radio" id="TypeIDiabetesMellitus2" name = "TypeIDiabetesMellitus" value="0">No<br>
+</p>
+
+
+<p> Type II Diabetes Mellitus:<br />
+<input type="radio" id="TypeIIDiabetesMellitus1" name = "TypeIIDiabetesMellitus" value="1">Yes<br>
+<input type="radio" id="TypeIIDiabetesMellitus2" name = "TypeIIDiabetesMellitus" value="0">No<br>
+</p>
+
+
+<p> Last Birth Method:<br />
+<input type ="radio" id="LastBirthMethod1" name = "LastBirthMethod" value="1">Forceps Delivery<br>
+<input type ="radio" id="LastBirthMethod2" name = "LastBirthMethod" value="2">Vacuum Delivery<br>
+<input type ="radio" id="LastBirthMethod3" name = "LastBirthMethod" value="3">Lower Caesarean Section Delivery<br>
+<input type ="radio" id="LastBirthMethod4" name = "LastBirthMethod" value="4">Classical Caesarean Section Delivery<br>
+<input type ="radio" id="LastBirthMethod5" name = "LastBirthMethod" value="5">None of the Above<br>
+</p>
+
+
+<p> Induced Labour:<br />
+<input type="radio" id="InducedLabour1" name = "InducedLabour" value="1">Yes<br>
+<input type="radio" id="InducedLabour2" name = "InducedLabour" value="0">No<br>
+</p>
+
+
+<p> Artificial Rupture of Membranes:<br />
+<input type="radio" id="AROM1" name = "AROM" value="1">Yes<br>
+<input type="radio" id="AROM2" name = "AROM" value="0">No<br>
+</p>
+
+
+<p> Non-Pharmacological Analgesia:<br />
+<input type="radio" id="NPA1" name = "NPA" value="1">Yes<br>
+<input type="radio" id="NPA2" name = "NPA" value="0">No<br>
+</p>
+
+<p> CTG:<br />
+<input type="radio" id="CTG1" name = "CTG" value="1">Yes<br>
+<input type="radio" id="CTG2" name = "CTG" value="0">No<br>
+</p>
+
+<p> Foetal Scalp Electrode:<br />
+<input type="radio" id="FSE1" name = "FSE" value="1">Yes<br>
+<input type="radio" id="FSE2" name = "FSE" value="0">No<br>
+</p>
+
+<p> Gestational Hypertension:<br />
+<input type="radio" id="GestHTN1" name = "GestHTN" value="1">Yes<br>
+<input type="radio" id="GestHTN2" name = "GestHTN" value="0">No<br>
+</p>
+
+
+<p> Pre-eclampsia:<br />
+<input type="radio" id="PreEc1" name = "PreEc" value="1">Yes<br>
+<input type="radio" id="PreEc2" name = "PreEc" value="0">No<br>
+</p>
+
+
+<p> Gestational Diabetes:<br />
+<input type="radio" id="GD1" name = "GD" value="1">Yes<br>
+<input type="radio" id="GD2" name = "GD" value="0">No<br>
+</p>
+
+<p> Antepartum Haemorrhage:<br />
+<input type="radio" id="AH1" name = "AH" value="1">Yes<br>
+<input type="radio" id="AH2" name = "AH" value="0">No<br>
+</p>
+
+
+<p> Presentation:<br />
+<input type ="radio" id="Presentation1" name = "Presentation" value="1">Breech<br>
+<input type ="radio" id="Presentation2" name = "Presentation" value="2">Brow<br>
+<input type ="radio" id="Presentation3" name = "Presentation" value="3">Face<br>
+<input type ="radio" id="Presentation4" name = "Presentation" value="4">Vertex<br>
+<input type ="radio" id="Presentation5" name = "Presentation" value="5">Shoulder<br>
+<input type ="radio" id="Presentation6" name = "Presentation" value="6">None of the Above<br>
+</p>
+
+<input type="button" value="Calculate" onclick="calculate();"/>
+
+</form>
+
+
+<td text-align:left;">
+Danielle Robson MBBS (Hons) </br></td>
+James Cook University </br></td>
+Townsville </br></td>
+Australia </br></td>
+Contact: danielle.robson@my.jcu.edu.au</br></td>
+</br></td>
+
+<b> <i> Disclaimer: The result from the Caesarean Section Prediction model has been calculated using data from Queensland 2010-2012 and analysed in SPSS Version 21.0. The calculator has been carefully tested and has been found to be reliable, but is yet to be validated against a different cohort. We do not take legal or financial responsibility for miscalculations. The responsibility lies wholly on the user of this calculator. </i> </b> </td>
+</tr>
+
+  </body>
+</html>
     
 
   </body>
